@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Plagiarism Checker
  * A tool for finding the longest shared substring between two documents.
@@ -15,10 +17,17 @@ public class PlagiarismChecker {
      * @return The length of the longest shared substring.
      */
     public static int longestSharedSubstring(String doc1, String doc2) {
+        int n = doc1.length(), m = doc2.length(), maxLen = 0;
+        int[][] dp = new int[n+2][m+2];
 
-        // TODO Complete this function to return the length of the longest shared substring.
-        int[][] dp = new int[doc1.length()][doc2.length()];
-
-        return 0;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                if (doc1.charAt(i) == doc2.charAt(j)) {
+                    dp[i][j] = dp[i-1][j-1] + 1;
+                }
+                maxLen = Math.max(maxLen, dp[i][j]);
+            }
+        }
+        return maxLen;
     }
 }
